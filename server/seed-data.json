@@ -1,0 +1,50 @@
+{
+  "regions": [
+    {
+      "id": "test-region",
+      "name": "Test Region",
+      "payment_providers": ["manual"],
+      "fulfillment_providers": ["manual"],
+      "currency_code": "USD",
+      "tax_rate": 0
+    }
+  ],
+  "shipping_options": [
+    {
+      "region_id": "test-region",
+      "name": "Test Shipping",
+      "provider_id": "manual",
+      "price_type": "flat_rate",
+      "data": {
+        "id": "manual-fulfillment"
+      }
+    }
+  ],
+  "users": [
+    {
+      "email": "admin@email.com",
+      "password": "change_to_admin_password"
+    }
+  ],
+  "products": [
+    {
+      "handle": "bookgroove",
+      "title": "Bookgroove",
+      "category": "table",
+      "description": "A sculptural shaped side table that also serves as a unique bookrack.",
+      "images": [
+        "https://res.cloudinary.com/dlz7r6hwt/image/upload/v1665873566/medusa-theme-elegant/bookgroove/5_d1sjbz.jpg"
+      ],
+      "options": [],
+      "variants": [
+        {
+          "title": "Default Title",
+          "price": 900,
+          "options": [],
+          "inventory_quantity": 10,
+          "manage_inventory": true
+        }
+      ]
+    }
+  ]
+}

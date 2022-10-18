@@ -1,0 +1,46 @@
+{
+  "name": "medusa-storefront",
+  "description": "Medusa Storefront",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "keywords": [
+    "nextjs",
+    "starter",
+    "typescript"
+  ],
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "type-check": "tsc",
+    "lint": "eslint --ignore-path ../.gitignore \"**/*.+(ts|js|tsx)\" --fix",
+    "format": "prettier --ignore-path ../.gitignore \"**/*.+(ts|js|tsx)\" --write"
+  },
+  "dependencies": {
+    "autoprefixer": "10.4.12",
+    "framer-motion": "7.6.1",
+    "next": "12.3.1",
+    "next-seo": "5.6.0",
+    "postcss": "8.4.18",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "tailwindcss": "3.1.8"
+  },
+  "devDependencies": {
+    "@types/node": "16.11.65",
+    "@types/react": "18.0.21",
+    "@types/react-dom": "18.0.6",
+    "@typescript-eslint/eslint-plugin": "5.40.0",
+    "@typescript-eslint/parser": "5.40.0",
+    "eslint": "8.25.0",
+    "eslint-config-next": "12.3.1",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-import-resolver-typescript": "3.5.1",
+    "eslint-plugin-import": "2.26.0",
+    "eslint-plugin-prettier": "4.2.1",
+    "prettier": "2.7.1",
+    "prettier-plugin-tailwindcss": "0.1.13",
+    "typescript": "4.8.4"
+  }
+}
