@@ -1,8 +1,26 @@
 import type { AppProps } from 'next/app';
 import '@/styles/fonts.css';
-import '@/styles/tailwind.css';
 import '@/styles/global.css';
+import '@/styles/tailwind.css';
+
+import { Fragment } from 'react';
+import { DefaultSeo } from 'next-seo';
+import { CartProvider } from '@/context/cart-context';
+import { LenisProvider } from '@/context/lenis-context';
+
+import { AnimatePresence } from 'framer-motion';
 
 export default function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <Fragment>
+      <DefaultSeo titleTemplate="%s | Monster" defaultTitle="Monster" />
+      <LenisProvider>
+        <CartProvider>
+          <AnimatePresence mode="wait">
+            <Component {...pageProps} />
+          </AnimatePresence>
+        </CartProvider>
+      </LenisProvider>
+    </Fragment>
+  );
 }
