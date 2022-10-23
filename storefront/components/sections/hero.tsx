@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion, Variants } from 'framer-motion';
 import { Container } from '@/components/layout/container';
-import { SlideInCharacters } from '@/components/animations/slide-in-characters';
+import { FadeInText } from '@/components/animations/fade-in-text';
 
 export const Hero = () => {
   return (
@@ -11,7 +11,7 @@ export const Hero = () => {
         <div className="relative h-[85vh] overflow-hidden border border-white  border-opacity-10">
           <div className="absolute inset-0 z-10 flex h-full flex-col items-center justify-center gap-4   border-sky-100 px-4 text-center">
             <h1 className=" bg-opacity-70 py-3 text-5xl uppercase leading-snug tracking-widest lg:text-4xl xl:text-8xl">
-              <SlideInCharacters text="Unleash The Beast!" />
+              <FadeInText text="Unleash The Beast!" />
             </h1>
 
             <Link href="/shop">
@@ -33,7 +33,7 @@ export const Hero = () => {
           <motion.div
             variants={infiniteRotate}
             animate="rotate"
-            className="absolute bottom-5 right-5 rotate-180 text-white lg:bottom-10 lg:right-10"
+            className="absolute bottom-20 right-5 rotate-180 text-white lg:bottom-10 lg:right-10"
           >
             <div className="scale-75 lg:scale-100">
               <svg

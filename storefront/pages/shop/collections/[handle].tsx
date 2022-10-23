@@ -3,7 +3,7 @@ import { InferGetStaticPropsType, GetStaticPropsContext } from 'next';
 import { medusaClient } from '@/lib/medusa-client';
 import { Container } from '@/components/layout/container';
 import { ProductCard, NavBar } from '@/components/collections';
-import { SlideInCharacters } from '@/components/animations/slide-in-characters';
+import { FadeInText } from '@/components/animations/fade-in-text';
 
 type ProductsPageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -16,7 +16,7 @@ const CollectionPage = ({
       <Container>
         <div className="my-10 flex flex-col gap-10 lg:my-20 lg:gap-20">
           <h1 className="text-4xl xl:text-8xl">
-            <SlideInCharacters text="Unleash The Beast" />
+            <FadeInText text="Unleash The Beast" />
           </h1>
 
           <NavBar collections={collections} />
