@@ -6,8 +6,10 @@ Demo: [https://medusa-starter-monster.vercel.app](https://medusa-starter-monster
 
 ## Features
 
-- TypeScript
 - Properly documented
+- Smooth Scrolling with [Lenis](https://github.com/studio-freight/lenis)
+- Animated page transitions with [Framer Motion](https://www.framer.com/motion)
+- TypeScript
 - Beautiful by default
 - ESLint — To find and fix problems in your code
 - Prettier — Code Formatter for consistent style
@@ -108,7 +110,7 @@ Since the Admin dashboard repo isn't modified, it's not included in this repo.
 3. Import the `monster-products.csv` file from the project's root folder using the admin dashboard. This will create products in the database that can be used to test the store.
 4. At the time of writing, there seems to be a bug with Product Collection creation from imported products. To fix this, we have to create Product collections manually. Fo to the `Products` page in the admin dashboard and click on the `Collections` tab. Click on the `Create Collection` button and create a collection with the names: `Monster Classic`, `Monster Ultra`, `Monster Hydro`, `Juice Monster` and `Java Monster`. Then group the imported products into their respective collections.
 
-- Create at least one region. Medusa requires.
+- Create at least one region. Medusa requires that to be able to create cart.
 
 ### Setup the NextJS Storefront
 
