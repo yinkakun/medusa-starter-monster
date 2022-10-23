@@ -8,6 +8,7 @@ import { DefaultSeo } from 'next-seo';
 import { CartProvider } from '@/context/cart-context';
 import { LenisProvider } from '@/context/lenis-context';
 
+import { Toaster } from 'react-hot-toast';
 import { AnimatePresence } from 'framer-motion';
 
 export default function MyApp({ Component, pageProps }: AppProps) {
@@ -16,6 +17,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       <DefaultSeo titleTemplate="%s | Monster" defaultTitle="Monster" />
       <LenisProvider>
         <CartProvider>
+          <Toaster position="bottom-right" />
           <AnimatePresence mode="wait">
             <Component {...pageProps} />
           </AnimatePresence>

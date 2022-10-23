@@ -3,27 +3,38 @@ import { medusaClient } from '@/lib/medusa-client';
 import { GetStaticPropsContext, InferGetStaticPropsType } from 'next';
 import { Layout } from '@/components/layout';
 import { Container } from '@/components/layout/container';
-import React from 'react';
+import { useState } from 'react';
 import { Minus, Plus } from 'react-feather';
 import { formatPrice } from '@/utils/format-price';
 import { useCart } from '@/context/cart-context';
+import { errorToast, successToast } from '@/utils/toasts';
 
 type ProductPageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 const ProductPage = ({ product }: ProductPageProps) => {
-  const [quantity, setQuantity] = React.useState(1);
+  const [quantity, setQuantity] = useState(1);
   const { addItem } = useCart();
   const { title, thumbnail, description, variants } = product!;
   const price = variants[0].prices[0];
   const variantId = variants[0].id;
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleAddToCart = () => {
+    setIsLoading(true);
     addItem({
       variantId: variantId,
       quantity,
+      onSuccess: () => {
+        setQuantity(1);
+        setIsLoading(false);
+        successToast('Item successfully added to cart');
+      },
+      onError: () => {
+        setIsLoading(false);
+        errorToast('Error Adding item to item to cart');
+      },
     });
-
-    setQuantity(1);
   };
 
   return (
@@ -53,7 +64,7 @@ const ProductPage = ({ product }: ProductPageProps) => {
                     onClick={handleAddToCart}
                     className="w-full bg-monster-green p-3 py-2 font-alt-sans text-lg uppercase text-noir duration-500 hover:bg-monster-green-300 md:max-w-sm"
                   >
-                    Add to cart
+                    {isLoading ? 'Adding...' : 'Add to cart'}
                   </button>
                 </div>
                 <p className="font-alt-sans text-sm font-light text-lotion text-opacity-90">

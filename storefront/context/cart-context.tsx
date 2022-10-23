@@ -75,6 +75,8 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 interface AddItemParams {
   variantId: string;
   quantity: number;
+  onError?: () => void;
+  onSuccess?: () => void;
 }
 
 interface UpdateItemParams {
@@ -91,13 +93,23 @@ export const useCart = () => {
 
   const { cart, setCart } = context;
 
-  const addItem = async ({ variantId, quantity }: AddItemParams) => {
-    if (cartId) {
+  const addItem = async ({
+    variantId,
+    quantity,
+    onError,
+    onSuccess,
+  }: AddItemParams) => {
+    if (!cartId) return;
+
+    try {
       const { cart } = await medusaClient.carts.lineItems.create(cartId, {
         variant_id: variantId,
         quantity,
       });
       setCart(cart);
+      onSuccess && onSuccess();
+    } catch (error) {
+      onError && onError();
     }
   };
 
