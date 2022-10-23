@@ -7,3 +7,24 @@
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'Hamlin';
+  src: local('Hamlin Regular'), local('Hamlin-Regular'),
+    url('/fonts/Hamlin-Regular.woff2') format('woff2'),
+    url('/fonts/Hamlin-Regular.woff') format('woff'),
+    url('/fonts/Hamlin-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+// hamlin 300
+@font-face {
+  font-family: 'Hamlin';
+  src: local('Hamlin Light'), local('Hamlin-Light'),
+    url('/fonts/Hamlin-Light.woff2') format('woff2'),
+    url('/fonts/Hamlin-Light.woff') format('woff'),
+    url('/fonts/Hamlin-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}

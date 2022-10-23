@@ -1,18 +1,22 @@
 html,
 body,
 #__next {
-  @apply font-sans;
   width: 100%;
-  min-height: 100%;
+  min-height: 100vh;
+  scroll-behavior: initial;
 }
 
-::-webkit-scrollbar {
-  background: transparent;
-  width: 0;
+body,
+#__next {
+  @apply bg-noir font-sans text-lotion;
 }
 
 body {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  scroll-behavior: initial;
+  /* hide scrollbar */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+/* hide scrollbar */
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
 }
