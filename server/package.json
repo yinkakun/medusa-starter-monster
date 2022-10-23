@@ -6,7 +6,7 @@
     "seed": "medusa seed -f ./seed-data.json",
     "build": "babel src -d dist --extensions \".ts,.js\"",
     "develop": "medusa develop",
-    "start": "medusa migrations run && medusa develop -p=8080"
+    "start": "medusa migrations run && medusa start -p=8080"
   },
   "dependencies": {
     "@medusajs/medusa": "^1.3.7",
