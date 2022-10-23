@@ -106,9 +106,17 @@ Since the Admin dashboard repo isn't modified, it's not included in this repo.
 
 2. Log in with the medusa server login credentials created above.
 3. Import the `monster-products.csv` file from the project's root folder using the admin dashboard. This will create products in the database that can be used to test the store.
-4. At the time of writing, there seems to be a bug with Product Collection creation from imported products. To fix this, we have to create Product collections manually. Fo to the `Products` page in the admin dashboard and click on the `Collections` tab. Click on the `Create Collection` button and create a collection with the names: `Monster Classic`, `Monster Ultra` and `Monster Hydro`, `Juice Monster` and `Java Monster`. Then group the imported products into their respective collections.
+4. At the time of writing, there seems to be a bug with Product Collection creation from imported products. To fix this, we have to create Product collections manually. Fo to the `Products` page in the admin dashboard and click on the `Collections` tab. Click on the `Create Collection` button and create a collection with the names: `Monster Classic`, `Monster Ultra`, `Monster Hydro`, `Juice Monster` and `Java Monster`. Then group the imported products into their respective collections.
+
+- Create at least one region. Medusa requires.
 
 ### Setup the NextJS Storefront
 
 1. Navigate to the `storefront` folder and install dependencies with `yarn install`
 2. While the medusa server is running, start the storefront dev server with `yarn dev`
+
+## Resources
+
+- [Medusa Docs](https://docs.medusa-commerce.com)
+- [How to implement carts](https://docs.medusajs.com/guides/carts-in-medusa)
+- [How to implement checkout flows](https://docs.medusajs.com/advanced/storefront/how-to-implement-checkout-flow)
