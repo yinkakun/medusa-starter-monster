@@ -1,8 +1,22 @@
 # medusa-starter-monster
 
+[![medusa-starter-monster](./cover-image.png)](https://medusa-starter-monster.netlify.com/)
+
+## About
+
+### Participants
+
+- Yinka - [@yinkakun](https://twitter.com/yinkakun)
+
+### Description
+
 Medusa Storefronts don't have to be boring. This starter is an elegant and beautiful [NextJS](https://nextjs.org) Storefront for [Medusa](https://medusajs.com). Styled using [TailwindCSS](https://tailwindcss.com), animations with [Framer Motion](https://www.framer.com/motion/), and deployed on [Vercel](https://vercel.com).
 
-Demo: [https://medusa-starter-monster.vercel.app](https://medusa-starter-monster.vercel.app)
+### Demo
+
+Live Demo: [https://medusa-starter-monster.vercel.app](https://medusa-starter-monster.vercel.app)
+
+Video Demo: [https://youtu.be/SBDtyHtv9xU](https://youtu.be/SBDtyHtv9xU)
 
 ## Features
 
@@ -10,6 +24,7 @@ Demo: [https://medusa-starter-monster.vercel.app](https://medusa-starter-monster
 - Smooth Scrolling with [Lenis](https://github.com/studio-freight/lenis)
 - Animated page transitions with [Framer Motion](https://www.framer.com/motion)
 - TypeScript
+- Responsive
 - Beautiful by default
 - ESLint — To find and fix problems in your code
 - Prettier — Code Formatter for consistent style
