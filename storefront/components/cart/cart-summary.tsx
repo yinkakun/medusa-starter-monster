@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Minus, Plus, Crosshair, X } from 'react-feather';
+import { Minus, Plus, X } from 'react-feather';
 import { useCart } from '@/context/cart-context';
 import { LineItem } from '@medusajs/medusa';
 import Image from 'next/image';
@@ -13,7 +13,10 @@ export const CartSummary = () => {
         <h3>Shopping Cart</h3>
       </div>
 
-      <div className="scrollbar-hide flex grow flex-col gap-4 overflow-y-auto">
+      <div
+        data-lenis-prevent
+        className="scrollbar-hide flex grow flex-col gap-4 overflow-y-scroll overscroll-contain"
+      >
         {cart?.items.map((item) => {
           return <CartItem key={item.id} item={item} />;
         })}
@@ -39,7 +42,7 @@ interface CartItemProps {
 }
 
 const CartItem = ({ item }: CartItemProps) => {
-  const { addItem, removeItem, updateItem } = useCart();
+  const { removeItem, updateItem } = useCart();
   const itemQuantity = item.quantity;
 
   const handleRemoveItem = () => {
@@ -65,7 +68,7 @@ const CartItem = ({ item }: CartItemProps) => {
   };
 
   return (
-    <div>
+    <div data-lenis-prevent>
       <div className="flex items-center justify-between gap-4 font-alt-sans text-white text-opacity-90">
         <div className="flex h-[80px] w-[80px] shrink-0 items-center justify-center border-white border-opacity-20 bg-white bg-opacity-10">
           <Image src={item.thumbnail || ''} width={20} height={50} />
