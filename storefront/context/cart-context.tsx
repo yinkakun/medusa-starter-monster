@@ -8,6 +8,7 @@ const initialCartState: CartState = null;
 
 interface CartContext {
   cart: CartState;
+  cartId: string;
   setCart: React.Dispatch<React.SetStateAction<CartState>>;
 }
 
@@ -20,53 +21,57 @@ interface CartProviderProps {
 const CART_ID = 'cart_id';
 const isBrowser = typeof window !== 'undefined';
 
-const cartId = isBrowser ? localStorage.getItem(CART_ID) : null;
-
 export const CartProvider = ({ children }: CartProviderProps) => {
   const [cartIsInit, setCartIsInit] = useState(false);
   const [cart, setCart] = useState<CartState>(initialCartState);
+  const [cartId, setCartId] = useState<string>('');
 
   useEffect(() => {
     if (cartIsInit) return;
+    const cartId = isBrowser && window.localStorage.getItem(CART_ID);
 
-    const initializeCart = async () => {
-      const cartId = isBrowser && window.localStorage.getItem(CART_ID);
+    const saveCartId = (cartId: string) => {
+      if (isBrowser) {
+        window.localStorage.setItem(CART_ID, cartId);
+        setCartId(cartId);
+      }
+    };
 
-      const setCartId = (cartId: string) => {
-        if (isBrowser) {
-          window.localStorage.setItem(CART_ID, cartId);
-        }
-      };
-
+    const createNewCart = async () => {
       const DEFAULT_REGION_ID = await (
         await medusaClient.regions.list()
       ).regions[0].id;
 
-      if (!cartId) {
-        const { cart } = await medusaClient.carts.create({
-          region_id: DEFAULT_REGION_ID,
-        });
+      const { cart } = await medusaClient.carts.create({
+        region_id: DEFAULT_REGION_ID,
+      });
 
-        if (!cart || cart.completed_at) {
-          setCartId('');
-          setCart(initialCartState);
-        }
-        setCartId(cart.id);
-        setCart(cart);
+      saveCartId(cart.id);
+      setCart(cart);
+    };
+
+    const initializeCart = async () => {
+      if (!cartId) {
+        createNewCart();
       }
 
       if (cartId) {
         const { cart } = await medusaClient.carts.retrieve(cartId);
-        setCart((prev) => ({ ...prev, ...cart }));
+
+        if (!cart || cart.completed_at) {
+          createNewCart();
+        }
+
+        setCart(cart);
       }
     };
 
     initializeCart();
     setCartIsInit(true);
-  }, [cart, setCart, cartIsInit, setCartIsInit]);
+  }, [cart, setCart, cartIsInit]);
 
   return (
-    <CartContext.Provider value={{ cart, setCart }}>
+    <CartContext.Provider value={{ cart, setCart, cartId }}>
       {children}
     </CartContext.Provider>
   );
@@ -91,7 +96,7 @@ export const useCart = () => {
     throw new Error('useCart must be used within a CartProvider');
   }
 
-  const { cart, setCart } = context;
+  const { cart, setCart, cartId } = context;
 
   const addItem = async ({
     variantId,
@@ -99,7 +104,9 @@ export const useCart = () => {
     onError,
     onSuccess,
   }: AddItemParams) => {
-    if (!cartId) return;
+    if (!cartId) {
+      throw new Error('No cart id found');
+    }
 
     try {
       const { cart } = await medusaClient.carts.lineItems.create(cartId, {
@@ -109,6 +116,7 @@ export const useCart = () => {
       setCart(cart);
       onSuccess && onSuccess();
     } catch (error) {
+      console.log(error);
       onError && onError();
     }
   };
