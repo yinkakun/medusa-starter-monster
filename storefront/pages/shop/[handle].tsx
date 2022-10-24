@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { Minus, Plus } from 'react-feather';
 import { formatPrice } from '@/utils/format-price';
 import { useCart } from '@/context/cart-context';
-import { errorToast, successToast } from '@/utils/toasts';
+import { errorToast, successToast } from '@/components/common/toasts';
 
 type ProductPageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -28,13 +28,17 @@ const ProductPage = ({ product }: ProductPageProps) => {
       onSuccess: () => {
         setQuantity(1);
         setIsLoading(false);
-        successToast('Item successfully added to cart');
       },
       onError: () => {
         setIsLoading(false);
         errorToast('Error Adding item to item to cart');
       },
     });
+
+    setTimeout(() => {
+      setIsLoading(false);
+      successToast('Item successfully added to cart');
+    }, 1000);
   };
 
   return (
